@@ -12,6 +12,8 @@
         <field name="arch" type="xml">
             <list string="Properties">
                 <field name="name"/>
+                <field name="property_type_id"/>
+                <field name="tag_ids" widget="many2many_tags"/>
                 <field name="postcode"/>
                 <field name="date_availability"/>
                 <field name="expected_price"/>
@@ -37,6 +39,8 @@
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="property_type_id"/>
                             <field name="postcode"/>
                             <field name="date_availability"/>
                         </group>
@@ -62,6 +66,21 @@
                         <page string="Description">
                             <field name="description"/>
                         </page>
+                        <page string="Offers">
+                            <field name="offer_ids">
+                                <list>
+                                    <field name="price"/>
+                                    <field name="partner_id"/>
+                                    <field name="status"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <field name="buyer_id"/>
+                                <field name="user_id"/>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -74,11 +93,13 @@
         <field name="arch" type="xml">
             <search string="Properties">
                 <field name="name"/>
+                <field name="property_type_id"/>
+                <field name="tag_ids"/>
                 <field name="postcode"/>
                 <field name="expected_price"/>
                 <field name="bedrooms"/>
-                <field name="living_area"/>
                 <field name="facades"/>
+                <field name="living_area"/>
 
                 <filter string="Available" name="available"
                     domain="[('state', 'in', ['new', 'offer_received'])]"/>
@@ -86,6 +107,8 @@
                 <group expand="0" string="Group By">
                     <filter string="Postcode" name="group_postcode"
                         context="{'group_by': 'postcode'}"/>
+                    <filter string="Property Type" name="group_property_type"
+                        context="{'group_by': 'property_type_id'}"/>
                 </group>
             </search>
         </field>
