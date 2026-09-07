@@ -5,6 +5,38 @@ from odoo.exceptions import UserError
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "Real Estate Property"
+    _sql_constraints = [
+        (
+            "check_expected_price",
+            "CHECK(expected_price > 0)",
+            "The expected price must be strictly positive.",
+        ),
+        (
+            "check_selling_price",
+            "CHECK(selling_price >= 0)",
+            "The selling price must be positive.",
+        ),
+        (
+            "check_bedrooms",
+            "CHECK(bedrooms >= 0)",
+            "The bedrooms must be strictly positive.",
+        ),
+        (
+            "check_living_area",
+            "CHECK(living_area >= 0)",
+            "The living area must be strictly positive.",
+        ),
+        (
+            "check_facades",
+            "CHECK(facades >= 0)",
+            "The facades must be strictly positive.",
+        ),
+        (
+            "check_garden_area",
+            "CHECK(garden_area >= 0)",
+            "The garden must be strictly positive.",
+        ),
+    ]
 
     def _default_date_availability(self):
         return fields.Date.add(fields.Date.context_today(self), months=3)
