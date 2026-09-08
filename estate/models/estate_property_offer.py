@@ -33,6 +33,11 @@ class EstatePropertyOffer(models.Model):
         string="Property",
         required=True,
     )
+    property_type_id = fields.Many2one(
+        "estate.property.type",
+        related="property_id.property_type_id",
+        store=True,
+    )
     validity = fields.Integer(string="Validity (days)", default=7)
     date_deadline = fields.Date(
         string="Deadline",

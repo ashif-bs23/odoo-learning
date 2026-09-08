@@ -24,12 +24,28 @@
         <field name="arch" type="xml">
             <form string="Property Type">
                 <sheet>
-                    <div class="oe_title">
-                        <h1>
-                            <field name="name"/>
-                        </h1>
-                        <field name="description"/>
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                            <field name="description"/>
+                        </div>
+                        <div class="o-form-buttonbox">
+                            <button type="action"
+                                    name="%(estate_property_offer_action)d"
+                                    class="oe_stat_button btn btn-outline-secondary"
+                                    icon="fa-usd">
+                                <div class="o_stat_info">
+                                    <span class="o_stat_text">Offers</span>
+                                    <span class="o_stat_value">
+                                        <field name="offer_count" nolabel="1"/>
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
                     </div>
+
                     <notebook>
                         <page string="Properties">
                             <field name="property_ids">
