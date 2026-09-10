@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_property_offers_inherit_account" inherit_id="estate.report_property_offers">
+        <xpath expr="//div[hasclass('page')]" position="inside">
+            <t t-if="property.state == 'sold'">
+                <t t-set="invoice" t-value="property.env['account.move'].search([('partner_id', '=', property.buyer_id.id), ('move_type', '=', 'out_invoice')], order='id desc', limit=1) if property.buyer_id else property.env['account.move']"/>
+                <div class="mt-3">
+                    <t t-if="invoice">
+                        <strong>Invoice: </strong>
+                        <span t-field="invoice.name"/>
+                        <br/>
+                        <strong>Invoice Total: </strong>
+                        <span t-field="invoice.amount_total"/>
+                    </t>
+                    <t t-else="">
+                        <span>This property is sold, but no invoice was found.</span>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

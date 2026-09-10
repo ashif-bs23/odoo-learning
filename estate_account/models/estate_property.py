@@ -26,3 +26,16 @@ class EstateProperty(models.Model):
                 ],
             })
         return result
+
+    def get_property_invoice(self):
+        self.ensure_one()
+        if not self.buyer_id:
+            return self.env["account.move"]
+        return self.env["account.move"].search(
+            [
+                ("partner_id", "=", self.buyer_id.id),
+                ("move_type", "=", "out_invoice"),
+            ],
+            order="id desc",
+            limit=1,
+        )
