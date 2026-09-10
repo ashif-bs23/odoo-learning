@@ -1,10 +1,44 @@
 from odoo import api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools.float_utils import float_compare, float_is_zero
 
 
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "Real Estate Property"
+    _order = "id desc"
+    _sql_constraints = [
+        (
+            "check_expected_price",
+            "CHECK(expected_price > 0)",
+            "The expected price must be strictly positive.",
+        ),
+        (
+            "check_selling_price",
+            "CHECK(selling_price >= 0)",
+            "The selling price must be positive.",
+        ),
+        (
+            "check_bedrooms",
+            "CHECK(bedrooms >= 0)",
+            "The bedrooms must be strictly positive.",
+        ),
+        (
+            "check_living_area",
+            "CHECK(living_area >= 0)",
+            "The living area must be strictly positive.",
+        ),
+        (
+            "check_facades",
+            "CHECK(facades >= 0)",
+            "The facades must be strictly positive.",
+        ),
+        (
+            "check_garden_area",
+            "CHECK(garden_area >= 0)",
+            "The garden must be strictly positive.",
+        ),
+    ]
 
     def _default_date_availability(self):
         return fields.Date.add(fields.Date.context_today(self), months=3)
@@ -42,6 +76,29 @@ class EstateProperty(models.Model):
                 raise UserError("Sold property can not be Cancelled.")
             record.state = 'cancelled'
         return True
+
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_new_or_cancelled(self):
+        for record in self:
+            if record.state not in ("new", "cancelled"):
+                raise UserError(
+                    "The property must be in 'new' or 'cancelled' state. "
+                )
+
+    @api.constrains("selling_price", "expected_price")
+    def _check_selling_price(self):
+        for record in self:
+            if float_is_zero(record.selling_price, precision_digits=2):
+                continue
+            if float_compare(
+                record.selling_price,
+                record.expected_price * 0.90,
+                precision_digits=2,
+            ) < 0:
+                raise ValidationError(
+                    "The selling price must be at least 90% of the expected price. "
+                    "You must reduce the expected price if you want to accept this offer."
+                )
 
 
     name = fields.Char('Estate Name', required=True)

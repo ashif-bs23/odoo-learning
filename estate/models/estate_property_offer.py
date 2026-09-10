@@ -1,10 +1,19 @@
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools.float_utils import float_compare
 
 
 class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
     _description = "Property Offer"
+    _order = "price desc"
+    _sql_constraints = [
+        (
+            "check_price",
+            "CHECK(price > 0)",
+            "The offer price must be strictly positive.",
+        ),
+    ]
 
     price = fields.Float(string="Price")
     status = fields.Selection(
@@ -24,6 +33,11 @@ class EstatePropertyOffer(models.Model):
         "estate.property",
         string="Property",
         required=True,
+    )
+    property_type_id = fields.Many2one(
+        "estate.property.type",
+        related="property_id.property_type_id",
+        store=True,
     )
     validity = fields.Integer(string="Validity (days)", default=7)
     date_deadline = fields.Date(
@@ -69,3 +83,17 @@ class EstatePropertyOffer(models.Model):
         for record in self:
             record.status = "refused"
         return True
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("property_id") and vals.get("price"):
+                prop = self.env["estate.property"].browse(vals["property_id"])
+                if prop.offer_ids:
+                    max_offer = max(prop.offer_ids.mapped("price"))
+                    if float_compare(vals["price"], max_offer, precision_digits=2) < 0:
+                        raise UserError("The offer must not be lower than an existing offer.")
+        records = super().create(vals_list)
+        for offer in records:
+            offer.property_id.state = "offer_received"
+        return records
