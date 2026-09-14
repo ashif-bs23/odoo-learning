@@ -4,7 +4,7 @@
     'name': 'Real Estate',
     'version': '1.4',
     'summary': 'Real Estate app',
-    'depends': ['base', 'report_xlsx'],
+    'depends': ['report_xlsx'],
     'application': True,
     'data': [
         'security/ir.model.access.csv',
