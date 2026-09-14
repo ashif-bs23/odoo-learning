@@ -5,4 +5,7 @@
     'summary': 'Link Real Estate to Invoicing',
     'depends': ['estate', 'account'],
     'application': False,
+    'data': [
+        'report/estate_property_templates.xml',
+    ],
 }
