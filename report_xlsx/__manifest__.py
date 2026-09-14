@@ -4,7 +4,7 @@
     "name": "Base report xlsx",
     "summary": "Base module to create xlsx report",
     "author": "ACSONE SA/NV," "Creu Blanca," "Odoo Community Association (OCA)",
-    "website": "https://brainstation-23.com",
+    "website": "https://github.com/OCA/reporting-engine",
     "category": "Reporting",
     "version": "18.0.1.0.1",
     "development_status": "Mature",
