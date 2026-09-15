@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tshirt_order_s_1" model="awesome_dashboard.tshirt_order">
+        <field name="name">SO-S-001</field>
+        <field name="size">s</field>
+        <field name="amount">19.9</field>
+    </record>
+    <record id="tshirt_order_s_2" model="awesome_dashboard.tshirt_order">
+        <field name="name">SO-S-002</field>
+        <field name="size">s</field>
+        <field name="amount">24.5</field>
+    </record>
+    <record id="tshirt_order_m_1" model="awesome_dashboard.tshirt_order">
+        <field name="name">SO-M-001</field>
+        <field name="size">m</field>
+        <field name="amount">29.0</field>
+    </record>
+    <record id="tshirt_order_m_2" model="awesome_dashboard.tshirt_order">
+        <field name="name">SO-M-002</field>
+        <field name="size">m</field>
+        <field name="amount">32.0</field>
+    </record>
+    <record id="tshirt_order_m_3" model="awesome_dashboard.tshirt_order">
+        <field name="name">SO-M-003</field>
+        <field name="size">m</field>
+        <field name="amount">27.5</field>
+    </record>
+    <record id="tshirt_order_l_1" model="awesome_dashboard.tshirt_order">
+        <field name="name">SO-L-001</field>
+        <field name="size">l</field>
+        <field name="amount">34.0</field>
+    </record>
+    <record id="tshirt_order_xl_1" model="awesome_dashboard.tshirt_order">
+        <field name="name">SO-XL-001</field>
+        <field name="size">xl</field>
+        <field name="amount">39.9</field>
+    </record>
+    <record id="tshirt_order_xl_2" model="awesome_dashboard.tshirt_order">
+        <field name="name">SO-XL-002</field>
+        <field name="size">xl</field>
+        <field name="amount">41.0</field>
+    </record>
+</odoo>
