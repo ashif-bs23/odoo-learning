@@ -11,6 +11,7 @@
         "web.assets_backend": [
             "awesome_clicker/static/src/**/*.js",
             "awesome_clicker/static/src/**/*.xml",
+            "awesome_clicker/static/src/**/*.scss",
         ],
     },
 }

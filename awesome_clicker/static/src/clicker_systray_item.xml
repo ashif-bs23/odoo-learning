@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
     <t t-name="awesome_clicker.ClickerSystrayItem">
         <Dropdown>
-            <button class="d-flex align-items-center gap-2 px-2 h-100 btn btn-link text-reset" type="button">
+            <button class="o_clicker_systray_btn d-flex align-items-center gap-2 px-2 h-100" type="button">
                 <span title="Clicks"><i class="fa fa-hand-pointer-o me-1"/><ClickValue value="clicker.clicks"/></span>
                 <span title="Trees"><i class="fa fa-tree me-1"/><t t-esc="clicker.trees"/></span>
                 <span title="Fruits"><i class="fa fa-lemon-o me-1"/><t t-esc="clicker.fruits"/></span>
