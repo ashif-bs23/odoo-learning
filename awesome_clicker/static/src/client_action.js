@@ -3,10 +3,11 @@ import { registry } from "@web/core/registry";
 import { standardActionServiceProps } from "@web/webclient/actions/action_service";
 import { useClicker } from "./clicker_service";
 import { ClickValue } from "./click_value";
+import { Notebook } from "@web/core/notebook/notebook";
 
 export class ClickerClientAction extends Component {
     static template = "awesome_clicker.ClickerClientAction";
-    static components = { ClickValue };
+    static components = { ClickValue, Notebook };
     static props = { ...standardActionServiceProps };
 
     setup() {
