@@ -11,6 +11,7 @@
                 <div class="px-3 py-2">
                     <div>Pear trees: <t t-esc="clicker.pearTrees"/> — pears: <t t-esc="clicker.pears"/></div>
                     <div>Cherry trees: <t t-esc="clicker.cherryTrees"/> — cherries: <t t-esc="clicker.cherries"/></div>
+                    <div>Peach trees: <t t-esc="clicker.peachTrees"/> — peaches: <t t-esc="clicker.peaches"/></div>
                 </div>
                 <DropdownItem onSelected.bind="openClientAction">Open Clicker Game</DropdownItem>
                 <DropdownItem onSelected.bind="buyClickBot">Buy 1 click bot</DropdownItem>

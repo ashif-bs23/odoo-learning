@@ -29,8 +29,10 @@
                         <div>Trees: <t t-esc="clicker.trees"/> — Fruits: <t t-esc="clicker.fruits"/></div>
                         <div>Pears: <t t-esc="clicker.pears"/> (trees: <t t-esc="clicker.pearTrees"/>)</div>
                         <div>Cherries: <t t-esc="clicker.cherries"/> (trees: <t t-esc="clicker.cherryTrees"/>)</div>
+                        <div>Peaches: <t t-esc="clicker.peaches"/> (trees: <t t-esc="clicker.peachTrees"/>)</div>
                         <button class="btn btn-secondary me-1" type="button" data-clicker-ignore="true" t-att-disabled="clicker.clicks lt 1000000" t-on-click="buyPearTree">Buy pear tree</button>
-                        <button class="btn btn-secondary" type="button" data-clicker-ignore="true" t-att-disabled="clicker.clicks lt 1000000" t-on-click="buyCherryTree">Buy cherry tree</button>
+                        <button class="btn btn-secondary me-1" type="button" data-clicker-ignore="true" t-att-disabled="clicker.clicks lt 1000000" t-on-click="buyCherryTree">Buy cherry tree</button>
+                        <button class="btn btn-secondary" type="button" data-clicker-ignore="true" t-att-disabled="clicker.clicks lt 1000000" t-on-click="buyPeachTree">Buy peach tree</button>
                     </div>
                     <div t-else="" class="text-muted mt-3">Unlock trees at 1,000,000 clicks.</div>
                 </t>
