@@ -3,10 +3,12 @@ import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { useClicker } from "./clicker_service";
 import { ClickValue } from "./click_value";
+import { Dropdown } from "@web/core/dropdown/dropdown";
+import { DropdownItem } from "@web/core/dropdown/dropdown_item";
 
 export class ClickerSystrayItem extends Component {
     static template = "awesome_clicker.ClickerSystrayItem";
-    static components = { ClickValue };
+    static components = { ClickValue, Dropdown, DropdownItem };
     static props = {};
 
     setup() {
@@ -35,6 +37,9 @@ export class ClickerSystrayItem extends Component {
            target: "new",
            name: "Clicker",
         });
+    }
+    buyClickBot(){
+        this.clicker.buyClickBot();
     }
 }
 
