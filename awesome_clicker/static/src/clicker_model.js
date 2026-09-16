@@ -1,5 +1,6 @@
 import { Reactive } from "@web/core/utils/reactive";
 import { EventBus } from "@odoo/owl";
+import { getReward as pickReward } from "./click_rewards";
 
 export class ClickerModel extends Reactive {
     constructor() {
@@ -57,5 +58,9 @@ export class ClickerModel extends Reactive {
 
         this.clicks -= 50000;
         this.power += 1;
+    }
+
+    getReward() {
+        return pickReward(this.level);
     }
 }
