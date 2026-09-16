@@ -9,9 +9,11 @@ export class ClickerModel extends Reactive {
         this.level = 0;
         this.clickBots = 0;
         this.bigBots = 0;
+        this.power = 1;
+
         setInterval(() => {
             if (this.clickBots > 0 || this.bigBots > 0) {
-                this.increment(10 * this.clickBots + 100 * this.bigBots);
+                this.increment((10 * this.clickBots + 100 * this.bigBots) * this.power);
             }
         }, 10000);
     }
@@ -25,6 +27,10 @@ export class ClickerModel extends Reactive {
 
         if (this.clicks >= 5000 && this.level < 2){
             this.level = 2;
+        }
+
+        if (this.clicks >= 100000 && this.level < 3){
+            this.level = 3;
         }
     }
 
@@ -42,5 +48,14 @@ export class ClickerModel extends Reactive {
         }
         this.clicks -= 5000;
         this.bigBots += 1;
+    }
+
+    buyPower(){
+        if(this.clicks < 50000){
+            return;
+        }
+
+        this.clicks -= 50000;
+        this.power += 1;
     }
 }
