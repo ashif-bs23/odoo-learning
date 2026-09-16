@@ -1,0 +1,17 @@
+.o_dashboard {
+    background-color: #e9ecef;
+}
+
+.o_dashboard canvas {
+    cursor: pointer;
+    max-width: 100%;
+}
+
+@media (max-width: 767.98px) {
+    .o_dashboard .o_awesome_dashboard_item {
+        width: 100% !important;
+        margin-left: 0;
+        margin-right: 0;
+        box-sizing: border-box;
+    }
+}

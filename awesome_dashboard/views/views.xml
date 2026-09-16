@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_awesome_dashboard" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">awesome_dashboard.dashboard</field>
+    </record>
+
+    <menuitem
+        id="menu_awesome_dashboard_root"
+        name="Awesome Dashboard"
+        action="action_awesome_dashboard"
+        sequence="91"
+    />
+
+    <record id="tshirt_order_view_list" model="ir.ui.view">
+        <field name="name">awesome_dashboard.tshirt_order.list</field>
+        <field name="model">awesome_dashboard.tshirt_order</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="size"/>
+                <field name="amount"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="tshirt_order_view_form" model="ir.ui.view">
+        <field name="name">awesome_dashboard.tshirt_order.form</field>
+        <field name="model">awesome_dashboard.tshirt_order</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="size"/>
+                        <field name="amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
