@@ -8,15 +8,13 @@
             <button class="btn btn-primary" type="button" data-clicker-ignore="true" t-on-click="increment">+10</button>
             <div t-if="clicker.level gte 1" class="mt-3">
                 <div>Clickbots: <t t-esc="clicker.clickBots"/></div>
-                    <button
-                        class="btn btn-secondary"
-                        type="button"
-                        data-clicker-ignore="true"
-                        t-att-disabled="clicker.clicks lt 1000"
-                        t-on-click="buyClickBot">
-                        Buy
-                    </button>
-                </div>
+                <button class="btn btn-secondary" type="button" data-clicker-ignore="true" t-att-disabled="clicker.clicks lt 1000" t-on-click="buyClickBot">Buy</button>
+            </div>
+
+            <div t-if="clicker.level gte 2" class="mt-3">
+                <div>Bigbots: <t t-esc="clicker.bigBots"/></div>
+                <button class="btn btn-secondary" type="button" data-clicker-ignore="true" t-att-disabled="clicker.clicks lt 5000" t-on-click="buyBigBot">Buy</button>
+            </div>
         </div>
     </t>
 </templates>

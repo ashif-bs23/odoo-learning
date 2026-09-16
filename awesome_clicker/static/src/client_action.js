@@ -20,6 +20,10 @@ export class ClickerClientAction extends Component {
     buyClickBot() {
         this.clicker.buyClickBot();
     }
+
+    buyBigBot() {
+        this.clicker.buyBigBot();
+    }
 }
 
 registry.category("actions").add("awesome_clicker.client_action", ClickerClientAction);
