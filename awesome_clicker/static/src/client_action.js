@@ -14,7 +14,7 @@ export class ClickerClientAction extends Component {
     }
 
     increment() {
-        this.clicker.increment(10);
+        this.clicker.increment(100000);
     }
 
     buyClickBot() {
@@ -27,6 +27,14 @@ export class ClickerClientAction extends Component {
 
     buyPower(){
         this.clicker.buyPower();
+    }
+
+    buyPearTree() {
+        this.clicker.buyPearTree();
+    }
+
+    buyCherryTree() {
+        this.clicker.buyCherryTree();
     }
 }
 
