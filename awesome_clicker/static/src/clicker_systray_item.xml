@@ -2,7 +2,9 @@
 <templates xml:space="preserve">
     <t t-name="awesome_clicker.ClickerSystrayItem">
         <div class="d-flex align-items-center gap-1 px-2">
-            <span>Clicks: <t t-esc="clicker.state.clicks"/></span>
+            <span>Clicks:
+                <ClickValue value="clicker.state.clicks"/>
+            </span>
             <button class="btn btn-secondary btn-sm" type="button" t-on-click="openClientAction">Open</button>
         </div>
     </t>
