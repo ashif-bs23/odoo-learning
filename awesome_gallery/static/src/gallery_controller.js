@@ -1,5 +1,6 @@
 import { Component, onWillStart, onWillUpdateProps, useState } from "@odoo/owl";
 import { Layout } from "@web/search/layout";
+import { KeepLast } from "@web/core/utils/concurrency";
 import { useService } from "@web/core/utils/hooks";
 import { standardViewProps } from "@web/views/standard_view_props";
 
@@ -13,6 +14,7 @@ export class GalleryController extends Component {
 
     setup() {
         this.orm = useService("orm");
+        this.keepLast = new KeepLast();
         this.model = useState({ records: [] });
 
         onWillStart(() => this.loadImages(this.props.domain));
@@ -21,14 +23,16 @@ export class GalleryController extends Component {
 
     async loadImages(domain) {
         const imageField = this.props.archInfo.imageField;
-        const { records } = await this.orm.webSearchRead(this.props.resModel, domain, {
-            specification: {
-                [imageField]: {},
-            },
-            context: {
-                bin_size: true,
-            },
-        });
+        const { records } = await this.keepLast.add(
+            this.orm.webSearchRead(this.props.resModel, domain, {
+                specification: {
+                    [imageField]: {},
+                },
+                context: {
+                    bin_size: true,
+                },
+            })
+        );
         this.model.records = records;
     }
 }
