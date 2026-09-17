@@ -1,0 +1,7 @@
+export class GalleryArchParser {
+    parse(xmlDoc) {
+        return {
+            imageField: xmlDoc.getAttribute("image_field"),
+        };
+    }
+}
