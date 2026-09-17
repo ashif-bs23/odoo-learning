@@ -4,6 +4,7 @@
         <div class="o_gallery_renderer d-flex flex-wrap gap-3 p-3">
             <t t-foreach="props.records" t-as="record" t-key="record.id">
                 <div class="o_gallery_item border rounded overflow-hidden cursor-pointer"
+                     t-att-data-tooltip="tooltip(record)"
                      t-on-click="() => this.onImageClick(record)">
                     <t t-if="record[props.imageField]">
                         <img class="o_gallery_image" t-att-src="imageUrl(record)" alt=""/>

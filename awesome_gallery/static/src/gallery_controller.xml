@@ -5,6 +5,7 @@
             <t t-component="props.Renderer"
                 records="model.records"
                 imageField="props.archInfo.imageField"
+                tooltipField="props.archInfo.tooltipField"
                 resModel="props.resModel"
             />
         </Layout>

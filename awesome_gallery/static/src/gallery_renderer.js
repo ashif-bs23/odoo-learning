@@ -7,6 +7,7 @@ export class GalleryRenderer extends Component {
     static props = {
         records: { type: Array },
         imageField: { type: String },
+        tooltipField: { type: String, optional: true },
         resModel: { type: String },
     };
 
@@ -20,6 +21,18 @@ export class GalleryRenderer extends Component {
             id: record.id,
             field: this.props.imageField,
         });
+    }
+
+    tooltip(record) {
+        const field = this.props.tooltipField;
+        if (!field) {
+            return false;
+        }
+        const value = record[field];
+        if (value && typeof value === "object") {
+            return value.display_name;
+        }
+        return value;
     }
 
     onImageClick(record) {

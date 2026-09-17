@@ -26,6 +26,7 @@ export class GalleryController extends Component {
             resModel: props.resModel,
             domain: props.domain,
             imageField: props.archInfo.imageField,
+            tooltipField: props.archInfo.tooltipField,
         });
     }
 }
