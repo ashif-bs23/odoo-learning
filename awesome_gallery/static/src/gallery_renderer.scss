@@ -1,0 +1,11 @@
+.o_gallery_item {
+    width: 160px;
+    height: 160px;
+}
+
+.o_gallery_image,
+.o_gallery_empty {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="awesome_gallery.GalleryRenderer">
-        <t t-foreach="props.records" t-as="record" t-key="record.id">
-            <div>
-                id: <t t-esc="record.id"/>
-                —
-                size: <t t-esc="record[props.imageField]"/>
-            </div>
-        </t>
+        <div class="o_gallery_renderer d-flex flex-wrap gap-3 p-3">
+            <t t-foreach="props.records" t-as="record" t-key="record.id">
+                <div class="o_gallery_item border rounded overflow-hidden">
+                    <t t-if="record[props.imageField]">
+                        <img class="o_gallery_image" t-att-src="imageUrl(record)" alt=""/>
+                    </t>
+                    <t t-else="">
+                        <div class="o_gallery_empty bg-light"/>
+                    </t>
+                </div>
+            </t>
+        </div>
     </t>
 </templates>
