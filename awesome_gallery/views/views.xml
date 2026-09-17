@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_partner_gallery" model="ir.ui.view">
+        <field name="name">res.partner.gallery</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <gallery image_field="image_1920" tooltip_field="name">
+                <field name="email"/>
+                <field name="name"/>
+                <tooltip-template>
+                    <p class="m-0">name: <field name="name"/></p>
+                    <p class="m-0">e-mail: <field name="email"/></p>
+                </tooltip-template>
+            </gallery>
+        </field>
+    </record>
+
+    <record id="contacts.action_contacts" model="ir.actions.act_window">
+        <field name="view_mode">kanban,list,form,activity,gallery</field>
+    </record>
+</odoo>
