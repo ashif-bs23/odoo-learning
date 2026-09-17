@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="awesome_gallery.GalleryController">
-        <Layout display="props.display">
-            <t t-component="props.Renderer"
-                records="model.records"
-                imageField="props.archInfo.imageField"
-                tooltipField="props.archInfo.tooltipField"
-                resModel="props.resModel"
-            />
-        </Layout>
+        <div t-att-class="props.className">
+            <Layout display="props.display">
+                <t t-component="props.Renderer"
+                    records="model.records"
+                    imageField="props.archInfo.imageField"
+                    tooltipField="props.archInfo.tooltipField"
+                    tooltipTemplate="props.archInfo.tooltipTemplate"
+                    resModel="props.resModel"
+                    onImageUpload.bind="onImageUpload"
+                />
+            </Layout>
+        </div>
     </t>
 </templates>

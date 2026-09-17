@@ -1,18 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
+    <t t-name="awesome_gallery.GalleryItem">
+        <div t-ref="root"
+             class="o_gallery_item border rounded overflow-hidden cursor-pointer position-relative"
+             t-att-data-tooltip="!props.compiledTooltip and tooltip()"
+             t-on-click="() => props.onImageClick(props.record)">
+            <t t-if="props.record[props.imageField]">
+                <img class="o_gallery_image" t-att-src="imageUrl()" alt=""/>
+            </t>
+            <t t-else="">
+                <div class="o_gallery_empty bg-light"/>
+            </t>
+            <div class="position-absolute bottom-0 end-0 m-1" t-on-click.stop="">
+                <FileUploader
+                    acceptedFileExtensions="'image/*'"
+                    onUploaded.bind="onUploaded"
+                >
+                    <t t-set-slot="toggler">
+                        <button class="btn btn-sm btn-light" type="button">
+                            <i class="fa fa-upload"/>
+                        </button>
+                    </t>
+                </FileUploader>
+            </div>
+        </div>
+    </t>
+
     <t t-name="awesome_gallery.GalleryRenderer">
         <div class="o_gallery_renderer d-flex flex-wrap gap-3 p-3">
             <t t-foreach="props.records" t-as="record" t-key="record.id">
-                <div class="o_gallery_item border rounded overflow-hidden cursor-pointer"
-                     t-att-data-tooltip="tooltip(record)"
-                     t-on-click="() => this.onImageClick(record)">
-                    <t t-if="record[props.imageField]">
-                        <img class="o_gallery_image" t-att-src="imageUrl(record)" alt=""/>
-                    </t>
-                    <t t-else="">
-                        <div class="o_gallery_empty bg-light"/>
-                    </t>
-                </div>
+                <GalleryItem
+                    record="record"
+                    imageField="props.imageField"
+                    tooltipField="props.tooltipField"
+                    compiledTooltip="compiledTooltip"
+                    resModel="props.resModel"
+                    onImageClick.bind="onImageClick"
+                    onImageUpload.bind="props.onImageUpload"
+                />
             </t>
         </div>
     </t>
