@@ -2,13 +2,10 @@
 <templates xml:space="preserve">
     <t t-name="awesome_gallery.GalleryController">
         <Layout display="props.display">
-            <t t-foreach="model.records" t-as="record" t-key="record.id">
-                <div>
-                    id: <t t-esc="record.id"/>
-                    —
-                    size: <t t-esc="record[props.archInfo.imageField]"/>
-                </div>
-            </t>
+            <GalleryRenderer
+                records="model.records"
+                imageField="props.archInfo.imageField"
+            />
         </Layout>
     </t>
 </templates>
