@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="awesome_clicker.ClickerSystrayItem">
+        <Dropdown>
+            <button class="o_clicker_systray_btn d-flex align-items-center gap-2 px-2 h-100" type="button">
+                <span title="Clicks"><i class="fa fa-hand-pointer-o me-1"/><ClickValue value="clicker.clicks"/></span>
+                <span title="Trees"><i class="fa fa-tree me-1"/><t t-esc="clicker.trees"/></span>
+                <span title="Fruits"><i class="fa fa-lemon-o me-1"/><t t-esc="clicker.fruits"/></span>
+            </button>
+            <t t-set-slot="content">
+                <div class="px-3 py-2">
+                    <div>Pear trees: <t t-esc="clicker.pearTrees"/> — pears: <t t-esc="clicker.pears"/></div>
+                    <div>Cherry trees: <t t-esc="clicker.cherryTrees"/> — cherries: <t t-esc="clicker.cherries"/></div>
+                    <div>Peach trees: <t t-esc="clicker.peachTrees"/> — peaches: <t t-esc="clicker.peaches"/></div>
+                </div>
+                <DropdownItem onSelected.bind="openClientAction">Open Clicker Game</DropdownItem>
+                <DropdownItem onSelected.bind="buyClickBot">Buy 1 click bot</DropdownItem>
+            </t>
+        </Dropdown>
+    </t>
+</templates>

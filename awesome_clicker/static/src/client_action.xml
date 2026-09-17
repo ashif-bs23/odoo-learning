@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="awesome_clicker.ClickerClientAction">
+        <div class="p-3">
+            <Notebook>
+                <t t-set-slot="clicks" title.translate="Clicks" isVisible="true">
+                    <div>Clicks:
+                        <ClickValue value="clicker.clicks"/>
+                    </div>
+                    <button class="btn btn-primary" type="button" data-clicker-ignore="true" t-on-click="increment">+100</button>
+
+                    <div t-if="clicker.level gte 1" class="mt-3">
+                        <div>Clickbots: <t t-esc="clicker.clickBots"/></div>
+                        <button class="btn btn-secondary" type="button" data-clicker-ignore="true" t-att-disabled="clicker.clicks lt 1000" t-on-click="buyClickBot">Buy</button>
+                    </div>
+
+                    <div t-if="clicker.level gte 2" class="mt-3">
+                        <div>Bigbots: <t t-esc="clicker.bigBots"/></div>
+                        <button class="btn btn-secondary" type="button" data-clicker-ignore="true" t-att-disabled="clicker.clicks lt 5000" t-on-click="buyBigBot">Buy</button>
+                    </div>
+
+                    <div t-if="clicker.level gte 3" class="mt-3">
+                        <div>Power: <t t-esc="clicker.power"/></div>
+                        <button class="btn btn-secondary" type="button" data-clicker-ignore="true" t-att-disabled="clicker.clicks lt 50000" t-on-click="buyPower">Buy</button>
+                    </div>
+                </t>
+                <t t-set-slot="trees" title.translate="Trees" isVisible="true">
+                    <div t-if="clicker.level gte 4" class="mt-3">
+                        <div>Trees: <t t-esc="clicker.trees"/> — Fruits: <t t-esc="clicker.fruits"/></div>
+                        <div>Pears: <t t-esc="clicker.pears"/> (trees: <t t-esc="clicker.pearTrees"/>)</div>
+                        <div>Cherries: <t t-esc="clicker.cherries"/> (trees: <t t-esc="clicker.cherryTrees"/>)</div>
+                        <div>Peaches: <t t-esc="clicker.peaches"/> (trees: <t t-esc="clicker.peachTrees"/>)</div>
+                        <button class="btn btn-secondary me-1" type="button" data-clicker-ignore="true" t-att-disabled="clicker.clicks lt 1000000" t-on-click="buyPearTree">Buy pear tree</button>
+                        <button class="btn btn-secondary me-1" type="button" data-clicker-ignore="true" t-att-disabled="clicker.clicks lt 1000000" t-on-click="buyCherryTree">Buy cherry tree</button>
+                        <button class="btn btn-secondary" type="button" data-clicker-ignore="true" t-att-disabled="clicker.clicks lt 1000000" t-on-click="buyPeachTree">Buy peach tree</button>
+                    </div>
+                    <div t-else="" class="text-muted mt-3">Unlock trees at 1,000,000 clicks.</div>
+                </t>
+            </Notebook>
+        </div>
+    </t>
+</templates>
