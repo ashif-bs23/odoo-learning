@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="ai_subscription_manager_action" model="ir.actions.act_window">
+        <field name="name">AI Subscription Manager</field>
+        <field name="res_model">ai.subscription</field>
+        <field name="view_mode">stats,list,form</field>
+    </record>
+
+    <record id="ai_subscription_manager_view_stats" model="ir.ui.view">
+        <field name="name">ai.subscription.stats</field>
+        <field name="model">ai.subscription</field>
+        <field name="arch" type="xml">
+            <stats/>
+        </field>
+    </record>
+
+
+    <record id="ai_subscription_manager_view_list" model="ir.ui.view" >
+        <field name="name">ai.subscription.list</field>
+        <field name="model">ai.subscription</field>
+        <field name="arch" type="xml">
+            <list string="AI Subscriptions"
+                  decoration-warning="state == 'due'"
+                  decoration-danger="state == 'overDue'"
+                  decoration-success="state == 'paid'">
+                <field name="title"/>
+                <field name="employee_id"/>
+                <field name="price"/>
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-warning="state == 'due'"
+                    decoration-danger="state == 'overDue'"
+                    decoration-success="state == 'paid'"/>
+                <field name="dueDate"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ai_subscription_manager_view_form" model="ir.ui.view">
+        <field name="name">ai.subscription.form</field>
+        <field name="model">ai.subscription</field>
+        <field name="arch" type="xml">
+            <form string="AI Subscription">
+                <header>
+                    <button name="action_paid" type="object" string="Mark as Paid"
+                            invisible="state == 'paid'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="due,overDue,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="title" placeholder="Subscription name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="price" string="Amount (BDT)"/>
+                            <field name="validity"/>
+                        </group>
+                        <group>
+                            <field name="created"/>
+                            <field name="dueDate"/>
+                            <field name="expirationDate" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="ai_subscription_manager_view_search" model="ir.ui.view">
+        <field name="name">ai.subscription.search</field>
+        <field name="model">ai.subscription</field>
+        <field name="arch" type="xml">
+            <search string="AI Subscriptions">
+                <filter
+                    name="due_overdue"
+                    string="Due &amp; Overdue"
+                    domain="[('state', 'in', ['due', 'overDue'])]"
+                />
+                <field name="title"/>
+                <field name="employee_id"/>
+                <field name="state"/>
+
+                <group expand="0" string="Group By">
+                    <filter string="State" name="group_state"
+                        context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <menuitem
+        id="ai_subscription_manager_menu_root"
+        name="AI Subscription"
+        action="ai_subscription_manager_action"
+        sequence="10"/>
+
+</odoo>
