@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ai_subscription_manager.StatsController">
+        <div t-att-class="props.className">
+            <Layout display="props.display">
+                <div class="o_ai_subscription_stats p-4">
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100 bg-view">
+                                <div class="text-muted">Total Subscription Amount</div>
+                                <div class="fs-2 fw-bold">
+                                    <t t-esc="formatAmount(state.totalSubscription)"/> BDT
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100 bg-view">
+                                <div class="text-muted">Total Received Amount</div>
+                                <div class="fs-2 fw-bold text-success">
+                                    <t t-esc="formatAmount(state.totalReceived)"/> BDT
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border rounded p-3 bg-view">
+                        <h5 class="mb-3">Subscription vs Received</h5>
+                        <BarChart
+                            totalSubscription="state.totalSubscription"
+                            totalReceived="state.totalReceived"
+                        />
+                    </div>
+                </div>
+            </Layout>
+        </div>
+    </t>
+</templates>
